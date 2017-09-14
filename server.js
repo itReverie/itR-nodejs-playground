@@ -3,11 +3,11 @@ const express = require('express');
 const app= express();
 
 //Setting up an engine
-app.set("view engine", "jade");
+app.set("view engine", "vash");
 
 //jade looks by default for views in the folder views
 app.get('/', function(request, response){
-    response.render('jade/index', {title: "Express + Jade"});
+    response.render('index', {title: "Express + vash"});
 });
 
 //Server
