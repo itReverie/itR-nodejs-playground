@@ -4,7 +4,8 @@
   "description": "Node.js playground",
   "main": "server.js",
   "dependencies": {
-    "express": "^4.15.4"
+    "express": "^4.15.4",
+    "jade": "^1.11.0"
   },
   "devDependencies": {},
   "scripts": {
