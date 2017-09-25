@@ -26,6 +26,17 @@
         });
     };
 
+    data.getNotes = function (categoryName, next) {
+        database.getDb(function (err, db) {
+            if (err) {
+                next(err, null);
+            }
+            else {
+                db.notes.findOne({name: categoryName}, next);
+            }
+        });
+    };
+
     //We are setting an async operation to save data into the db
     data.createNewCategory = function (categoryName, next) {
         database.getDb(function (err, db) {
