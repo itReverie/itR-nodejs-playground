@@ -3,9 +3,9 @@
     const MongoClient = require('mongodb').MongoClient;
 
     //url for production
-    let uri = "mongodb://mongodbUser:mongodbPassword@cluster0-shard-00-00-i6dab.mongodb.net:27017,cluster0-shard-00-01-i6dab.mongodb.net:27017,cluster0-shard-00-02-i6dab.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin";
+    //let uri = "mongodb://mongodbUser:mongodbPassword@cluster0-shard-00-00-i6dab.mongodb.net:27017,cluster0-shard-00-01-i6dab.mongodb.net:27017,cluster0-shard-00-02-i6dab.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin";
     //url for development
-    //uri= "mongodb://localhost:27017/theBoard"; //it will create the db
+    let uri= "mongodb://localhost:27017/theBoard"; //it will create the db
 
 
     let theDb= null;
@@ -33,4 +33,5 @@
             next(null, theDb);
         }
     }
+
 })(module.exports);
