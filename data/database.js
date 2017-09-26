@@ -7,7 +7,6 @@
     //url for development
     let uri= "mongodb://localhost:27017/theBoard"; //it will create the db
 
-
     let theDb= null;
 
     database.getDb = function (next) {

@@ -4,6 +4,7 @@
     //We connect to the database
     let data = require("../data");
 
+    //Passing the app object
     homeController.init= function(app){
         app.get('/', function(request, response){
 
@@ -11,8 +12,7 @@
             data.getNoteCategories(function(err, results){
                 response.render('index', {title: "Express and vash",
                                           error: err,
-                                          categories: results,
-                                          newCatError: request.flash("newCatError")});
+                                          categories: results});
             });
 
         });
@@ -24,7 +24,7 @@
                     // Handle Error
                     console.log(err);
                     //Very temporary way to display our error in session and display it whwhn we load the page agaon
-                    request.flash("newCatError", err);
+                    //request.flash("newCatError", err);
                     response.redirect("/");
                 } else {
                     response.redirect("/notes/" + categoryName);
@@ -32,7 +32,5 @@
             });
         });
 
-
     };
-
 })(module.exports);

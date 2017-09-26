@@ -25,18 +25,6 @@
             }
         });
     };
-
-    data.getNotes = function (categoryName, next) {
-        database.getDb(function (err, db) {
-            if (err) {
-                next(err, null);
-            }
-            else {
-                db.notes.findOne({name: categoryName}, next);
-            }
-        });
-    };
-
     //We are setting an async operation to save data into the db
     data.createNewCategory = function (categoryName, next) {
         database.getDb(function (err, db) {
@@ -66,6 +54,27 @@
                         }
                     }
                 });
+            }
+        });
+    };
+
+
+    data.getNotes = function (categoryName, next) {
+        database.getDb(function (err, db) {
+            if (err) {
+                next(err, null);
+            }
+            else {
+                db.notes.findOne({name: categoryName}, next);
+            }
+        });
+    };
+    data.addNote = function(categoryName, note, next){
+        database.getDb(function (err, db) {
+            if (err) {
+                next(err);
+            } else {
+                db.notes.update({ name: categoryName}, {$push: {notes: note}}, next);
             }
         });
     };

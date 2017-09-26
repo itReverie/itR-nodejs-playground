@@ -3,10 +3,6 @@ const express = require('express');
 const app= express();
 const controllers = require("./controllers");
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
-const session = require('express-session');
-const connectFlash = require('connect-flash');
-
 
 //Setting up the view engine
 app.set("view engine", "vash");
@@ -14,10 +10,11 @@ app.set("view engine", "vash");
 //Opt into services
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+//app.use(express.json());
 //By default node and express do not use session state so we might have to configure it
-app.use(cookieParser());
-app.use(session({ secret: "MyBoardProject" }));
-app.use(connectFlash()); //Flash uses session state. Not very nice :O
+//app.use(cookieParser());
+//app.use(session({ secret: "MyBoardProject" }));
+//app.use(connectFlash()); //Flash uses session state. Not very nice :O
 
 //Setting the controller that will handle the routes of the project
 //Map the routes
