@@ -12,7 +12,6 @@
     };
 
     hasher.computeHash = function (source, salt) {
-
         //createHmac is an encription algoithm
         //I can change sha1 if I need more security
         let hmac = crypto.createHmac("sha1", salt);

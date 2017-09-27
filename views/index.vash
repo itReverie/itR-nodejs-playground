@@ -5,14 +5,13 @@
       <p class="text-error">Error occurred: @model.error</p>
     }
 
-      <div class="row">
+       <div class="row">
         <div class="list-group col-lg-6">
           @model.categories.forEach(function (category) {
-            <a href="#" class="list-group-item list-group-item-info"><span class="badge">@(category.notes ? category.notes.length : 0)</span>@category.name</a>
+            <a href="/notes/@category.name" class="list-group-item list-group-item-info"><span class="badge">@(category.notes ? category.notes.length : 0)</span>@category.name</a>
           })
         </div>
       </div>
-
 
      @if (model.newCatError) {
           <p class="text-warning">@model.newCatError</p>

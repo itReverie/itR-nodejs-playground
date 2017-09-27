@@ -2,6 +2,7 @@
 
     let data= require("../data");
     let hasher= require("./hasher");
+    var auth = require("../auth");
 
     //http://passportjs.org/
     let passport = require("passport");
@@ -20,6 +21,23 @@
             next(null, false, { message: "Invalid Credentials." });
         });
     }
+
+    auth.ensureAuthenticated = function (req, res, next) {
+        //This is an authenticated object added by the passport
+        if (req.isAuthenticated()) {
+            next();
+        } else {
+            res.redirect("/login");
+        }
+    };
+
+    auth.ensureApiAuthenticated = function (req, res, next) {
+        if (req.isAuthenticated()) {
+            next();
+        } else {
+            res.send(401, "Not authorized");
+        }
+    };
 
     auth.init = function (app){
 
@@ -91,4 +109,5 @@
             });
         });
     };
+
 })(module.exports);

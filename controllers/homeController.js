@@ -3,11 +3,12 @@
 
     //We connect to the database
     let data = require("../data");
+    var auth = require("../auth");
 
     //Passing the app object
     homeController.init= function(app){
-        app.get('/', function(request, response){
 
+        app.get('/', function(request, response){
             //Making using of the async function
             data.getNoteCategories(function(err, results){
                 response.render('index', {title: "Express and vash",
@@ -17,6 +18,14 @@
                     user: request.user}); // here we are adding it to the model if the user is npm startauthenticated
             });
 
+        });
+
+        //If we want to protect the notes just for the log in users you can pass (not call pass the function)
+        app.get("/notes/:categoryName",
+            auth.ensureAuthenticated, //If it succeeds then call the function below
+            function(request, response){
+            let categoryName= request.params.categoryName;
+            response.render("notes", { title: categoryName, user: request.user });
         });
 
         app.post("/newCategory", function (request, response) {
