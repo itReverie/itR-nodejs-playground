@@ -9,6 +9,7 @@
 
 
         app.get("/api/notes/:categoryName",
+            auth.ensureApiAuthenticated, //If it succeeds then call the function below
             function (req, res) {
 
                 var categoryName = req.params.categoryName;
