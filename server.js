@@ -4,25 +4,24 @@ const app= express();
 const controllers = require("./controllers");
 const bodyParser = require('body-parser');
 
+//Handler to tell the server that this folder could be seen by the users
+//set the public static resource folder
+app.use(express.static(__dirname + "/public"));
+
 //Setting up the view engine
 app.set("view engine", "vash");
 
 //Opt into services
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
-//app.use(express.json());
-//By default node and express do not use session state so we might have to configure it
-//app.use(cookieParser());
-//app.use(session({ secret: "MyBoardProject" }));
-//app.use(connectFlash()); //Flash uses session state. Not very nice :O
 
-//Setting the controller that will handle the routes of the project
+// use authentication
+let auth = require("./auth");
+auth.init(app);
+
 //Map the routes
 controllers.init(app);
 
-//Handler to tell the server that this folder could be seen by the users
-//set the public static resource folder
-app.use(express.static(__dirname + "/public"));
 
 //Server
 const server= http.createServer(app);

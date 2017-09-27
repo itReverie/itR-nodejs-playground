@@ -12,7 +12,8 @@
             data.getNoteCategories(function(err, results){
                 response.render('index', {title: "Express and vash",
                                           error: err,
-                                          categories: results});
+                                          categories: results,
+                                            user: request.user}); // here we are adding it to the model if the user is authenticated
             });
 
         });

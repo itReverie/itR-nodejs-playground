@@ -22,9 +22,10 @@
                 else {
                     //We are wrapping the db in an object in case we need it later with more parameters.
                     //Maybe we would like to know which user is accessing it, etc.
-                    theDb = {db: db, notes: db.collection("notes")};
+                    theDb = {db: db,
+                             notes: db.collection("notes"),
+                             users: db.collection("users")};
                     next(null, theDb);
-                    //db.close();
                 }
             });
         }

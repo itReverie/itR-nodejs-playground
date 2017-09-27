@@ -79,6 +79,28 @@
         });
     };
 
+
+    data.addUser= function(user, next)
+    {
+        database.getDb(function(err, db){
+            if (err) {
+                next(err);
+            } else {
+                db.users.insert(user, next);
+            }
+        });
+    };
+
+    data.getUser = function (username, next) {
+        database.getDb(function (err, db) {
+            if (err) {
+                next(err);
+            } else {
+                db.users.findOne({ username: username }, next);
+            }
+        });
+    };
+
     function seedDataBase() {
         database.getDb(function (err, db) {
             if (err) {
