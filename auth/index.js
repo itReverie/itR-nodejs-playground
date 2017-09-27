@@ -57,9 +57,9 @@
         app.post("/Login", function(request, response, next){
 
             //We are putting together an object that can be called for  the authentication
-            var authFunction = passport.authenticate("local",
-                { successRedirect: '/',
-                    failureRedirect: '/login' });
+            var authFunction = passport.authenticate("local", { successRedirect: '/',
+                                                                failureRedirect: '/login',
+                                                                failureFlash: true });
             //This is where the actual authentication happens
             authFunction(request, response, next);
         });

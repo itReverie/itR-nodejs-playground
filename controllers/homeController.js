@@ -13,19 +13,20 @@
                 response.render('index', {title: "Express and vash",
                                           error: err,
                                           categories: results,
-                                            user: request.user}); // here we are adding it to the model if the user is authenticated
+                    newCatError: request.flash("newCatName"),
+                    user: request.user}); // here we are adding it to the model if the user is npm startauthenticated
             });
 
         });
 
         app.post("/newCategory", function (request, response) {
-            var categoryName = request.body.categoryName;
+            let categoryName = request.body.categoryName;
             data.createNewCategory(categoryName, function (err) {
                 if (err) {
                     // Handle Error
                     console.log(err);
                     //Very temporary way to display our error in session and display it whwhn we load the page agaon
-                    //request.flash("newCatError", err);
+                    request.flash("newCatError", err);
                     response.redirect("/");
                 } else {
                     response.redirect("/notes/" + categoryName);
